@@ -1,0 +1,10 @@
+import {cp, mkdir} from 'node:fs/promises';
+await mkdir('public/vendor/wasm',{recursive:true});
+await mkdir('public/models/aircraft/x8',{recursive:true});
+await mkdir('public/models/engine',{recursive:true});
+await cp('node_modules/@0x62/jsbsim-wasm/dist/index.js','public/vendor/index.js');
+await cp('node_modules/@0x62/jsbsim-wasm/dist/wasm','public/vendor/wasm',{recursive:true});
+await cp('node_modules/@0x62/jsbsim-wasm/LICENSE','public/vendor/LICENSE');
+await cp('../models/aircraft/x8/x8.xml','public/models/aircraft/x8/x8.xml');
+await cp('../models/engine/electric800W.xml','public/models/engine/electric800W.xml');
+await cp('../models/engine/direct.xml','public/models/engine/direct.xml');
