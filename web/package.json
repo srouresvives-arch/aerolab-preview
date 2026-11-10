@@ -1,0 +1,1 @@
+{"name":"aerolab-browser","version":"0.2.0","private":true,"type":"module","scripts":{"prepare:web":"node prepare.mjs","test":"node test-ui.mjs"},"dependencies":{"@0x62/jsbsim-wasm":"1.2.4-beta.4"}}
