@@ -1,0 +1,7 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {pathToFileURL} from 'node:url';
+const vals={alt:500,speed:20,lat:41.38,lon:2.17,roll:0,pitch:3,heading:0,duration:30,wn:0,we:0,wd:0,throttle:.5,throttle2:.5,elevator:0,elevator2:0,aileron:0,aileron2:0,event:10,name:'Cas 1'};
+class Element {constructor(){this.textContent='';this.style={};this.children=[];this.width=1100;this.height=420;this.disabled=false;this.value='alt';this.elements={name:{value:'Cas 1'}}}getContext(){return new Proxy({}, {get:(o,k)=>o[k]??(()=>{}),set:(o,k,v)=>(o[k]=v,true)})}addEventListener(){}setPointerCapture(){}replaceChildren(){this.children=[]}append(...x){this.children.push(...x)}click(){} }
+const els={};globalThis.document={querySelector:k=>els[k]??=(new Element()),createElement:()=>new Element()};globalThis.FormData=class{constructor(){}*[Symbol.iterator](){yield* Object.entries(vals)}};globalThis.location={href:pathToFileURL(process.cwd()+'/public/index.html').href};globalThis.fetch=async path=>({ok:true,arrayBuffer:async()=>{let b=fs.readFileSync('public/'+path.replace(/^\.\//,''));return b.buffer.slice(b.byteOffset,b.byteOffset+b.byteLength)}});
+await import('./public/app.js');await new Promise(r=>setTimeout(r,300));await els['#form'].onsubmit({preventDefault(){}});console.log('status:',els['#status'].textContent,'altitude:',els['#ma'].textContent,'velocity:',els['#mv'].textContent);assert.match(els['#status'].textContent,/Cas completat/);assert.match(els['#ma'].textContent,/m/);
